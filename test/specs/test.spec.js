@@ -1,18 +1,12 @@
 describe ("Create a New Paste", function (){
 
-    it("should add a new paste and display on the page", async function() {
-       /*Selenium automates:
-     1. Open Chrome
-     2. Navigate to app
-     3. Type "Hello from WebDriver" in the "New Paste" text area
-     4. Choose "10 Minutes" from the "Paste Expiration" list box
-     5. Type "helloweb" in the "Paste Name / Title:" input box
-     6. Click the "Create New Post" button
-    */
+    it("should open the main url and verify title", async function() {
         await browser.url("https://pastebin.com/");
         const pageTitle = await browser.getTitle();    
         expect(pageTitle).toEqual("Pastebin.com - #1 paste tool since 2002!");
-  
+    })
+
+    it("should add a new paste", async function() {
         await $("textarea[name='PostForm[text]']").setValue("Hello from WebDriver");
     
         await $("#select2-postform-expiration-container").click();
@@ -26,7 +20,9 @@ describe ("Create a New Paste", function (){
         await $("input[id='postform-name']").setValue("helloweb");
         
         await $("button[class='btn -big']").click();
+    })
 
+    it("verify if a new paste is added", async function() {
         const infoTop = await $("div[class='info-top']").getText();
         expect(infoTop).toEqual("helloweb");
     
@@ -34,6 +30,7 @@ describe ("Create a New Paste", function (){
         expect(code).toEqual("Hello from WebDriver");
 
         await browser.saveScreenshot('./screens/screenshot.png');
-
     })
+
+    
 })
