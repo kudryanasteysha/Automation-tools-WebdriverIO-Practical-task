@@ -9,8 +9,6 @@ describe ("Create a New Paste", function (){
      5. Type "helloweb" in the "Paste Name / Title:" input box
      6. Click the "Create New Post" button
     */
-        
-
         await browser.url("https://pastebin.com/");
         const pageTitle = await browser.getTitle();    
         expect(pageTitle).toEqual("Pastebin.com - #1 paste tool since 2002!");
@@ -25,10 +23,17 @@ describe ("Create a New Paste", function (){
         const expirationTitile = await $('#select2-postform-expiration-container').getText();
         expect(expirationTitile).toEqual("10 Minutes");
 
+        await $("input[id='postform-name']").setValue("helloweb");
+        
+        await $("button[class='btn -big']").click();
+
+        const infoTop = await $("div[class='info-top']").getText();
+        expect(infoTop).toEqual("helloweb");
     
+        const code = await $("div[class='de1']").getText();
+        expect(code).toEqual("Hello from WebDriver");
+
         await browser.saveScreenshot('./screens/screenshot.png');
-
-
 
     })
 })
