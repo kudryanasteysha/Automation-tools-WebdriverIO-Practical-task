@@ -1,4 +1,3 @@
-//import BasePage from 'test/pages/base.page.js';
 const BasePage = require('../pages/base.page');
 
  class MainPage extends BasePage {

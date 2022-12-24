@@ -1,7 +1,5 @@
-//import MainPage from 'test/pages/main.page.js'
 const MainPage = require('../pages/main.page');
 
-//const MainPage = new MainPage();
 describe ("Create a New Paste", function (){
     
     it.only ("should add a new paste (I Can Win)", async function() {
