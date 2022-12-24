@@ -2,7 +2,7 @@ const MainPage = require('../pages/main.page');
 
 describe ("Create a New Paste", function (){
     
-    it.only ("should add a new paste (I Can Win)", async function() {
+    it ("should add a new paste (I Can Win)", async function() {
         // open the main url 
         await MainPage.open();
 
