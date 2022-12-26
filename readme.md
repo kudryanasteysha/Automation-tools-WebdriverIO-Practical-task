@@ -14,7 +14,8 @@ To run the tests
 npm run wdio
 ```
 To run single test
-1. Specify **it** as **it.only** :
+1. Specify **it** as **it.only** 
+For example:
 ``` JS
 it.only ("should add a new paste", async function() {
     
