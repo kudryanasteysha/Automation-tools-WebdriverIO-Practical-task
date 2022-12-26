@@ -1,5 +1,11 @@
 # How to run tests?
 
+## Installation
+1. Open the terminal
+2. Write the command line
+```
+npm install
+```
 ## Run all tests
 1. Open the terminal
 2. Write the command line
