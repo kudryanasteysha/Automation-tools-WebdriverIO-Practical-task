@@ -7,8 +7,8 @@
 npm run wdio
 ```
 
-## Run a single test
-1. Write the command in your test. For example:
+## Run single test
+1. Specify **it** as **it.only** :
 ``` JS
 it.only ("should add a new paste", async function() {
     

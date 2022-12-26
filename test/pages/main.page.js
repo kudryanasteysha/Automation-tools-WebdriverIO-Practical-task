@@ -1,6 +1,7 @@
 const BasePage = require('../pages/base.page');
 
  class MainPage extends BasePage {
+  
   async fillOutForm (codeText, expireTime, pasteTitle) {
     await $("textarea[name='PostForm[text]']").setValue(codeText);
     await $("#select2-postform-expiration-container").click();
