@@ -7,22 +7,13 @@ describe ("Create a New Paste", function (){
         await MainPage.open();
 
         // fill out form (add a new paste)
-        await MainPage.enterTextPasteInput("Hello from WebDriver");
-        await MainPage.selectPasteExpiration();
-        await MainPage.enterTextNameInput("helloweb");
-        await MainPage.submitBtn();
+        await MainPage.fillOutForm("Hello from WebDriver", "10 Minutes", "helloweb");
+        await MainPage.clickSubmitBtn();
  
-        // validation
-        const pasteName = await MainPage.nameOfPaste.getText();
-        const codeString = await MainPage.code1.getText();
-        const expireTime = await MainPage.expireTime.getText();
-
-        await expect(codeString).toEqual("Hello from WebDriver");
-        await expect(pasteName).toEqual("helloweb");
-        await expect(expireTime).toEqual("10 MIN");
-
-        // take a screenshot of the result
-        await browser.saveScreenshot('./screens/screenshotICanWin.png');
+        // verification
+        expect(await MainPage.getTextFromCode(1)).toEqual("Hello from WebDriver");
+        expect(await MainPage.getTextFromPasteTitle()).toEqual("helloweb");
+        expect(await MainPage.getTextFromExpireTime()).toEqual("10 MIN");
     })
 
     it ("should add a new paste (Bring It On)", async function() {
@@ -34,26 +25,15 @@ describe ("Create a New Paste", function (){
         await MainPage.selectSyntaxHighlighting();
         await MainPage.selectPasteExpiration();
         await MainPage.enterTextNameInput("how to gain dominance among developers");
-        await MainPage.submitBtn();
+        await MainPage.clickSubmitBtn();
 
-        // validation
-        const pasteName = await MainPage.nameOfPaste.getText();
-        const codeFirstString = await MainPage.code1.getText();
-        const codeSecondString = await MainPage.code2.getText();
-        const codeThirdString = await MainPage.code3.getText();
-        const expireTime = await MainPage.expireTime.getText();
-        const elemSyntaxHighlighting = await $("//a[@class='btn -small h_800' and contains(text(), 'Bash')]");
-
-        await expect(codeFirstString).toEqual('git config --global user.name "New Sheriff in Town"');
-        await expect(codeSecondString).toEqual('git reset $ (git commit-tree HEAD ^ {tree} -m "Legacy code")');
-        await expect(codeThirdString).toEqual('git push origin master --force');
-        await expect(pasteName).toEqual("how to gain dominance among developers");
-        await expect(expireTime).toEqual("10 MIN");
-        await expect(elemSyntaxHighlighting).toBeDisplayed();
-
-        // take a screenshot of the result
-        await browser.saveScreenshot('./screens/screenshotBringItOn.png');
-
+        // verification
+        expect(await MainPage.getTextFromCode(1)).toEqual('git config --global user.name "New Sheriff in Town"');
+        expect(await MainPage.getTextFromCode(2)).toEqual('git reset $ (git commit-tree HEAD ^ {tree} -m "Legacy code")');
+        expect(await MainPage.getTextFromCode(3)).toEqual('git push origin master --force');
+        expect(await MainPage.getTextFromPasteTitle()).toEqual("how to gain dominance among developers");
+        expect(await MainPage.getTextFromExpireTime()).toEqual("10 MIN");
+        expect(await MainPage.checkSyntaxHighlighting()).toBeDisplayed();
     })
     
 })
