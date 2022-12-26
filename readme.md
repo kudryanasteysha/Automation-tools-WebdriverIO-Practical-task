@@ -6,14 +6,14 @@
 ```
 npm install
 ```
-## Run all tests
+## Run 
+To run the tests
 1. Open the terminal
 2. Write the command line
 ```
 npm run wdio
 ```
-
-## Run single test
+To run single test
 1. Specify **it** as **it.only** :
 ``` JS
 it.only ("should add a new paste", async function() {
